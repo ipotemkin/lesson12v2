@@ -5,12 +5,13 @@
   <main class="container">
     <br><section class="items">
       <div>
+          <p class="item__title">Полный список товаров:</p><br>
 <!--              class="items__wrapper">-->
         {% for e in entities %}
 <!--         <p>{{ e.name }}</p>-->
         <div>
 <!--          class="items__item item">-->
-            <p class="item__price">{{ e.id }}. <b>{{ e.name }}</b>, {{ e.cpu }}, {{ e.ram }}, {{ e.video }}, {{ e.price }}</p><br><hr>
+            <p class="item__price">{{ e.id }}. <b>{{ e.name }}</b>, {{ e.cpu }}, {{ e.ram }}, {{ e.video }}, {{ e.price }}</p><hr>
 <!--            <p class="item__descr">{{ e.cpu }} {{ e.ram }} {{ e.video }}</p>-->
 <!--            <p class="item__price">{{ e.price }}</p>-->
         </div>
