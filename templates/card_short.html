@@ -22,19 +22,13 @@
   </header>
   <main class="container">
     <section class="item-card">
-      <h1 class="item-card__title title">{{ entity.name }}</h1>
-      <p class="item-card__info">Краткий формат</p>
-<!--      <a href="#" class="item-card__more">Показать в кратком формате</a>-->
       <div class="item-card__card">
         <div class="item-card__img-wrapper">
           <img src="../static/{{ entity.img_set }}" srcset="../static/{{ entity.img_set }}" alt="Not found!" class="item-card__img" />
         </div>
-        <p class="item-card__info">Модель: {{ entity.model }}</p>
-        <p class="item-card__info">Год выпуска: {{ entity.year }}</p>
-<!--        <p class="item-card__info">CPU: i9 </p>-->
-<!--        <p class="item-card__info">RAM: 32GB</p>-->
-<!--        <p class="item-card__info">GPU: radeon d3</p>-->
-        <p class="item-card__info">Цена: {{ entity.price }}</p>
+        <p class="item__title">{{ entity.name }}</p>
+        <p class="item__descr">{{ entity.cpu }} {{ entity.ram }} {{ entity.video }}</p>
+        <p class="item__price">{{ entity.price }}</p>
       </div>
     </section>
   </main>
