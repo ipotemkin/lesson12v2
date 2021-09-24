@@ -15,13 +15,13 @@ ENTITIES = get_entities()
 
 @app.route('/')
 def index():
-    return render_template("main-all-items.html", entities=ENTITIES)
+    return render_template("main-all-items.html", entities=ENTITIES, title="Главная")
 
 
 @app.route('/paging/<int:page>')
 def paging(page):
 
-    return render_template("page.html", entities=ENTITIES, page=page)
+    return render_template("page.html", entities=ENTITIES, page=page, title="По страницам")
 
 
 @app.route('/search')
@@ -55,14 +55,14 @@ def search():
                 response = [e for e in ENTITIES if word in e["model"].split()]
                 if response:
                     break
-    return render_template("search_ause.html", entities=response)
+    return render_template("search_ause.html", entities=response, title="Поиск")
 
 
 @app.route('/card/<int:eid>')
 def card(eid: int):
     for ent in ENTITIES:
         if ent["id"] == eid:
-            return render_template("card_full.html", entity=ent)
+            return render_template("card_full.html", entity=ent, title="Карточка товара")
     return "<h1>No such a card</h1>"
 
 
@@ -70,8 +70,13 @@ def card(eid: int):
 def card_short(eid: int):
     for ent in ENTITIES:
         if ent["id"] == eid:
-            return render_template("card_short.html", entity=ent)
+            return render_template("card_short.html", entity=ent, title="Сокращенная карточка товара")
     return "<h1>No such a card</h1>"
+
+
+@app.route('/list/')
+def list_():
+    return render_template("list.html", entities=ENTITIES, title="Список товаров")
 
 
 if __name__ == '__main__':
