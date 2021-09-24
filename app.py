@@ -35,6 +35,7 @@ def card(eid: int):
     for ent in ENTITIES:
         if ent["id"] == eid:
             return render_template("card_full.html", entity=ent)
+    return "<h1>No such a card</h1>"
 
 
 if __name__ == '__main__':
