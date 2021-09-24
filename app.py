@@ -38,5 +38,13 @@ def card(eid: int):
     return "<h1>No such a card</h1>"
 
 
+@app.route('/card_short/<int:eid>')
+def card_short(eid: int):
+    for ent in ENTITIES:
+        if ent["id"] == eid:
+            return render_template("card_short.html", entity=ent)
+    return "<h1>No such a card</h1>"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
