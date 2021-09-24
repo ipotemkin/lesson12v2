@@ -115,5 +115,18 @@
     "price": "230 000 рублей",
     "img": "img/item1.jpg",
     "img_set": "img/item9_2x.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Macbook Air 13, 2021",
+    "model": "macbook air",
+    "year": 2021,
+    "monitor": 13,
+    "cpu": "M1",
+    "ram": "16GB",
+    "video": "iris 630",
+    "price": "230 000 рублей",
+    "img": "img/item1.jpg",
+    "img_set": "img/item9_2x.jpg"
   }
 ]

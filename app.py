@@ -17,9 +17,10 @@ def index():
     return render_template("main-all-items.html", entities=ENTITIES)
 
 
-@app.route('/paging')
-def paging():
-    return render_template("main.html")
+@app.route('/paging/<int:page>')
+def paging(page):
+
+    return render_template("page.html", entities=ENTITIES, page=page)
 
 
 @app.route('/search')

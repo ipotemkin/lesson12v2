@@ -3,19 +3,15 @@
 {% block content %}
 
   <main class="container">
-    <section class="page-search">
-      <h1 class="page-search__title title">Поиск</h1>
-      <form action="/search" class="page-search__form">
-        <div class="page-search__input-wrap">
-          <input name="model" type="search" class="page-search__input input" placeholder="Например: macpro или imac">
-        </div>
-        <button type="submit" class="page-search__btn">Найти</button>
-      </form>
-    </section>
     <section class="items">
-      <p class="items__deteils">Найдено: {{ entities | length }}</p>
+        <div >
+          <br>
+          <p class="item__title">Всего в наличии: {{ entities | length }}</p>
+          <p class="item__price">Страница {{ page }} из {{ ((entities|length)/3)|round(0,'ceil')|int }}</p>
+        </div>
       <div class="items__wrapper">
         {% for e in entities %}
+        {% if (e.id > (page-1)*3) and (e.id <= (page-1)*3+3) %}
         <div class="items__item item">
           <a href="/card/{{ e.id }}" class="item__wrapper">
             <div class="item__img-wrapper">
@@ -26,9 +22,20 @@
             <p class="item__price">{{ e.price }}</p>
           </a>
         </div>
+        {% endif %}
         {% endfor %}
       </div>
     </section>
+    <ul class="pagination item__price">
+      <li><a>Перейти к странице:</a></li>
+      {% for p in range(1, ((entities|length)/3)|round(0,'ceil')|int + 1) %}
+        {% if p == page %}
+          <li><a href="/paging/{{ p }}"><b>{{ p }}</b></a></li>
+        {% else %}
+          <li><a href="/paging/{{ p }}">{{ p }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
   </main>
 
 {% endblock %}
@@ -40,8 +47,9 @@
 <!--<head>-->
 <!--  <meta charset="UTF-8">-->
 <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--  <title>Поиск — результаты</title>-->
-<!--  <link href="../static/../static/css/styles.min.css" rel="stylesheet">-->
+<!--  <title>Главная</title>-->
+<!--  <link href="../static/css/styles.min.css" rel="stylesheet">-->
+<!--&lt;!&ndash;  <link rel="canonical" href="/main-all-items/">&ndash;&gt;-->
 <!--</head>-->
 
 <!--<body>-->
@@ -57,17 +65,7 @@
 <!--    </div>-->
 <!--  </header>-->
 <!--  <main class="container">-->
-<!--    <section class="page-search">-->
-<!--      <h1 class="page-search__title title">Поиск</h1>-->
-<!--      <form action="/search" class="page-search__form">-->
-<!--        <div class="page-search__input-wrap">-->
-<!--          <input name="model" type="search" class="page-search__input input" placeholder="Например: macpro или imac">-->
-<!--        </div>-->
-<!--        <button type="submit" class="page-search__btn">Найти</button>-->
-<!--      </form>-->
-<!--    </section>-->
 <!--    <section class="items">-->
-<!--      <p class="items__deteils">Найдено: {{ entities | length }}</p>-->
 <!--      <div class="items__wrapper">-->
 <!--        {% for e in entities %}-->
 <!--        <div class="items__item item">-->
