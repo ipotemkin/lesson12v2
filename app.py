@@ -24,9 +24,32 @@ def paging():
 
 
 @app.route('/search')
+# поиск по 1-му слову
+# def search():
+#     model = request.args.get('model')
+#     response = ENTITIES if not model else [e for e in ENTITIES if e["model"] == model]
+#     return render_template("search_ause.html", entities=response)
+# универсальный поиск
 def search():
     model = request.args.get('model')
-    response = ENTITIES if not model else [e for e in ENTITIES if e["model"] == model]
+    response = []
+    if model:
+        # model_lst = model.strip().split()
+        # for e in ENTITIES:
+        #     if e["model"] == model:
+        #         response.append(e)
+        #     elif model_lst[0] in e["model"]:
+        #         response.append(e)
+        #     elif len(model_lst) > 1 and model_lst[1] in e["model"]:
+        #         response.append(e)
+        #
+
+        response = [e for e in ENTITIES if e["model"] == model]
+        if not response:
+            model_lst = model.strip().split()
+            response = [e for e in ENTITIES if model_lst[0] in e["model"]]
+            if (len(model_lst) > 1) and not response:
+                response = [e for e in ENTITIES if model_lst[1] in e["model"]]
     return render_template("search_ause.html", entities=response)
 
 
