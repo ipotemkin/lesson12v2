@@ -26,13 +26,7 @@ def paging():
 @app.route('/search')
 def search():
     model = request.args.get('model')
-    response = []
-    if not model:
-        response = ENTITIES
-    else:
-        for e in ENTITIES:
-            if e["model"] == model:
-                response.append(e)
+    response = ENTITIES if not model else [e for e in ENTITIES if e["model"] == model]
     return render_template("search_ause.html", entities=response)
 
 
