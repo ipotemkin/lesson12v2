@@ -34,16 +34,7 @@ def search():
     model = request.args.get('model')
     response = []
     if model:
-        # model_lst = model.strip().split()
-        # for e in ENTITIES:
-        #     if e["model"] == model:
-        #         response.append(e)
-        #     elif model_lst[0] in e["model"]:
-        #         response.append(e)
-        #     elif len(model_lst) > 1 and model_lst[1] in e["model"]:
-        #         response.append(e)
-        #
-
+        model = model.lower()
         response = [e for e in ENTITIES if e["model"] == model]
         if not response:
             model_lst = model.strip().split()
