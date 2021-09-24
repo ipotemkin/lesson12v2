@@ -1,5 +1,4 @@
 import json
-
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -29,18 +28,31 @@ def paging():
 #     model = request.args.get('model')
 #     response = ENTITIES if not model else [e for e in ENTITIES if e["model"] == model]
 #     return render_template("search_ause.html", entities=response)
-# универсальный поиск
+# поиск по 2-м словам
+# model = request.args.get('model')
+# response = []
+# if model:
+#     model = ' '.join(model.strip().lower().split())
+#     response = [e for e in ENTITIES if e["model"] == model]
+#     if not response:
+#         model_lst = model.split()
+#         response = [e for e in ENTITIES if model_lst[0] in e["model"].split()]
+#         if (len(model_lst) > 1) and not response:
+#             response = [e for e in ENTITIES if model_lst[1] in e["model"].split()]
+# return render_template("search_ause.html", entities=response)
+# универсальный поиск - любое количество слов, разделенных пробелом
 def search():
     model = request.args.get('model')
     response = []
     if model:
-        model = model.lower()
+        model = ' '.join(model.strip().lower().split())  # removing excess spaces
         response = [e for e in ENTITIES if e["model"] == model]
         if not response:
-            model_lst = model.strip().split()
-            response = [e for e in ENTITIES if model_lst[0] in e["model"]]
-            if (len(model_lst) > 1) and not response:
-                response = [e for e in ENTITIES if model_lst[1] in e["model"]]
+            model_lst = model.split()
+            for word in model_lst:
+                response = [e for e in ENTITIES if word in e["model"].split()]
+                if response:
+                    break
     return render_template("search_ause.html", entities=response)
 
 
