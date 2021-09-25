@@ -3,7 +3,7 @@ import json
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # 'an insanely secret and long key'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 def get_entities():
